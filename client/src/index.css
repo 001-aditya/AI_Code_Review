@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+
+* {
+ @apply transition-all duration-200 ease-in-out;
+}
+
+body {
+  @apply bg-black/90 text-white font-sans;
+}
+
+/* Scrollbar styling (optional but premium feel) */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+
+
+
+
+/* Button Primary */
+.btn-primary {
+  @apply bg-slate-200 hover:bg-slate-300 text-black px-7 py-3 rounded-lg;
+}
+
+/* Section Title */
+.title {
+  @apply text-lg font-semibold mb-2;
+}
