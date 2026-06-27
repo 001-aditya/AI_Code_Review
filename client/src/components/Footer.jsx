@@ -12,11 +12,12 @@ const Footer = () => {
             CodeReview<span className="text-gray-400">AI</span>
           </span>
         </Link>
-
-
       </div>
 
       {/* Bottom */}
+      <div className="mt-6 text-center text-gray-400 text-sm">
+        <span>Design and Developed by</span> <span className='text-white'>Aditya Shukla</span>
+      </div>
       <div className="mt-6 text-center text-gray-500 text-sm">
         © 2026 CodeReviewAI. All Rights Reserved.
       </div>

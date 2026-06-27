@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import CodeNav from '../components/CodeNav'
 import EditorLayout from '../Layouts/EditorLayout'
@@ -22,6 +22,10 @@ const Ide = () => {
   // AI Chat state
   const [messages, setMessages] = useState([])
   const [aiLoading, setAiLoading] = useState(false)
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const API_URL = import.meta.env.VITE_API_URL || `http://${window.location.hostname}:5000`;
 
@@ -72,7 +76,7 @@ const Ide = () => {
   }
 
   return (
-    <div className="h-[calc(100vh-64px)] flex flex-col">
+    <div className="h-[calc(100svh-64px)] flex flex-col overflow-hidden">
       <CodeNav
         language={language}
         setLanguage={setLanguage}

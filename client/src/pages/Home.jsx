@@ -11,7 +11,7 @@ const Home = () => {
 
 
       <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-4xl mx-auto">
-        <div className="mb-8 mt-40">
+        <div className="mb-8 mt-20 md:mt-40">
           <Type />
         </div>
 

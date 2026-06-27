@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import CodeEditor from '../components/CodeEditor'
 import Terminal from '../components/Terminal';
 import ChatPanel from '../components/ChatPanel';
-import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels'
+import { Panel, Group as PanelGroup, Separator as PanelResizeHandle } from 'react-resizable-panels'
 import { Code, Terminal as TerminalIcon, Sparkles } from 'lucide-react';
 
 const EditorLayout = ({
@@ -26,28 +26,32 @@ const EditorLayout = ({
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      setIsMobile(width < 640);
+      setIsMobile(width < 850);
       setDirection(width < 1024 ? 'vertical' : 'horizontal');
     };
 
     handleResize();
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
   }, []);
 
   if (isMobile) {
     return (
-      <div className="h-full flex flex-col bg-gray-900 text-white overflow-hidden">
+      <div className="h-full flex flex-col bg-gray-900 text-white overflow-hidden w-full">
         {/* Tab Content */}
-        <div className="flex-1 overflow-hidden relative">
+        <div className="flex-1 min-h-0 overflow-hidden relative w-full">
           {activeTab === 'code' && (
-            <div className="h-full">
+            <div className="h-full w-full">
               <CodeEditor code={code} setCode={setCode} language={language} />
             </div>
           )}
 
           {activeTab === 'terminal' && (
-            <div className="h-full overflow-auto bg-black p-4">
+            <div className="h-full w-full overflow-auto bg-black p-4">
               <Terminal
                 input={input}
                 setInput={setInput}
@@ -58,7 +62,7 @@ const EditorLayout = ({
           )}
 
           {activeTab === 'ai' && (
-            <div className="h-full bg-[#0d0d0d]">
+            <div className="h-full w-full bg-[#0d0d0d]">
               <ChatPanel 
                 code={code} 
                 messages={messages} 
@@ -71,7 +75,7 @@ const EditorLayout = ({
         </div>
 
         {/* Mobile Tab Bar */}
-        <div className="flex bg-slate-950 border-t border-gray-800 h-16 shrink-0">
+        <div className="flex bg-slate-950 border-t border-gray-800 h-16 shrink-0 w-full z-30">
           <button
             onClick={() => setActiveTab('code')}
             className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors ${activeTab === 'code' ? 'text-blue-400 bg-blue-400/5' : 'text-gray-500 hover:text-gray-300'}`}

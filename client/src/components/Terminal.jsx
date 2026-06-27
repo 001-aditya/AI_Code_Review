@@ -5,13 +5,13 @@ const Terminal = ({
   loading,
 }) => {
   return (
-    <div className="h-full bg-black text-white font-mono p-3 overflow-auto">
+    <div className="h-full bg-black text-white font-mono p-3 overflow-y-auto flex flex-col">
       {/* Terminal Header */}
-      <div className="border-b border-gray-700 pb-2 mb-3">
+      <div className="border-b border-gray-700 pb-2 mb-3 shrink-0">
         <p className="text-green-400">Terminal</p>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-4 shrink-0">
         <p className="text-yellow-400 mb-2">Input</p>
 
         <textarea
@@ -34,12 +34,13 @@ const Terminal = ({
       </div>
 
       {/* Output Section */}
-      <div>
-        <p className="text-blue-400 mb-2">Output</p>
+      <div className="flex-1 flex flex-col min-h-0">
+        <p className="text-blue-400 mb-2 shrink-0">Output</p>
 
         <div
           className="
-            min-h-25
+            flex-1
+            overflow-y-auto
             bg-gray-900
             border
             border-gray-700
